@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý đơn hàng</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .order-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+    .order-table th, .order-table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    .order-table th { background: #0dec84; color: #fff; }
+    .order-table tr:nth-child(even) { background: #f9f9f9; }
+    .order-items { font-size: 0.95em; color: #333; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quản lý đơn hàng</h1>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="catalog.html">Danh mục sản phẩm</a>
+      <a href="cart.html">Giỏ hàng</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Danh sách đơn hàng</h2>
+    <table class="order-table" id="orders-table">
+      <thead>
+        <tr>
+          <th>Thời gian</th>
+          <th>Họ tên</th>
+          <th>Địa chỉ</th>
+          <th>Số điện thoại</th>
+          <th>Sản phẩm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Đơn hàng sẽ được render ở đây -->
+      </tbody>
+    </table>
+    <p id="no-orders" style="display:none; color:#888;">Chưa có đơn hàng nào.</p>
+  </main>
+  <script src="js/manage.js"></script>
+</body>
+</html>

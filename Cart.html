@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giỏ hàng</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🛒 Giỏ hàng của bạn</h1>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="catalog.html">Danh mục sản phẩm</a>
+      <a href="cart.html">Giỏ hàng</a>
+    </nav>
+  </header>
+
+  <main>
+    <ul id="cart-items"></ul>
+    <h3 id="total">Tổng: 0đ</h3>
+    <button id="checkout-btn">Mua hàng</button>
+
+    <!-- Form thanh toán -->
+    <div id="checkout-form" style="display:none; margin-top:20px;">
+      <h2>Thông tin đặt hàng</h2>
+      <label>Họ tên: <input type="text" id="name"></label><br><br>
+      <label>Địa chỉ: <input type="text" id="address"></label><br><br>
+      <label>Số điện thoại: <input type="text" id="phone"></label><br><br>
+      <button id="confirm-btn">Xác nhận</button>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
