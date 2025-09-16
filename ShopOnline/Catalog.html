@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh mục sản phẩm</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🛒 Danh mục sản phẩm</h1>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="catalog.html">Danh mục sản phẩm</a>
+      <a href="cart.html">Giỏ hàng</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Danh mục Đồ Điện -->
+    <h2>Đồ Điện</h2>
+    <div class="product">
+      <img src="img/sp1.jpg" alt="điện">
+      <h3>Mạch điện</h3>
+      <p>Giá: 100,000đ</p>
+      <button onclick="addToCart('điện', 100000, 'img/sp1.jpg')">Mua hàng</button>
+    </div>
+    
+
+    <!-- Danh mục Pin -->
+    <h2>🔋 Pin</h2>
+    <div class="product">
+      <img src="img/sp2.jpg" alt="Pin dự phòng">
+      <h3>Pin dự phòng</h3>
+      <p>Giá: 400,000đ</p>
+      <button onclick="addToCart('Pin dự phòng', 400000, 'img/sp2.jpg')">Mua hàng</button>
+    </div>
+    <div class="product">
+      <img src="img/sp3.jpg" alt="Pin AA">
+      <h3>Pin AA</h3>
+      <p>Giá: 20,000đ</p>
+      <button onclick="addToCart('Pin AA', 20000, 'img/sp3.jpg')">Mua hàng</button>
+    </div>
+    <div class="product">
+      <img src="img/sp5.jpg" alt="Pin dự phòng">
+      <h3>Pin dự phòng</h3>
+      <p>Giá: 200,000đ</p>
+      <button onclick="addToCart('Pin dự phòng', 200000, 'img/sp5.jpg')">Mua hàng</button>
+    </div>
+
+    <!-- Danh mục Mạch điện -->
+    <h2>⚡ Mạch điện</h2>
+    <div class="product">
+      <img src="img/sp4.jpg" alt="Mạch Arduino">
+      <h3>Mạch Arduino</h3>
+      <p>Giá: 150,000đ</p>
+      <button onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua hàng</button>
+    </div>
+    <div class="product">
+      <img src="img/sp6.jpg" alt="Mạch Raspberry Pi">
+      <h3>Mạch Raspberry Pi</h3>
+      <p>Giá: 300,000đ</p>
+      <button onclick="addToCart('Mạch Raspberry Pi', 300000, 'img/sp6.jpg')">Mua hàng</button>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
