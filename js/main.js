@@ -1,85 +1,162 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Thêm sản phẩm (có thêm ảnh)
+const CART_KEY = 'shop_cart'; 
+const ORDERS_KEY = 'shop_orders'; 
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+}
+
+
 function addToCart(name, price, img) {
-  cart.push({ name, price, img });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " đã được thêm vào giỏ!");
+    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    let existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, img: img, quantity: 1 });
+    }
+    
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+ 
+    if (!window.location.pathname.includes('cart.html')) {
+        alert(`Đã thêm "${name}" vào giỏ hàng!`);
+    }
 }
 
-// Load giỏ hàng
-function loadCart() {
-  let cartItems = document.getElementById("cart-items");
-  let total = 0;
-  cartItems.innerHTML = "";
 
-  cart.forEach((item, index) => {
-    let li = document.createElement("li");
-    li.innerHTML = `
-      <img src="${item.img}" alt="${item.name}" style="max-width: 60px; max-height: 60px; object-fit: cover;">
-      <div class="info">
-        <strong>${item.name}</strong><br>
-        <span>${item.price.toLocaleString()}đ</span>
-      </div>
-      <button onclick="removeFromCart(${index})">❌ Xóa</button>
-    `;
-    cartItems.appendChild(li);
-    total += item.price;
-  });
+function renderCart() {
+    const cartBody = document.getElementById('cart-body');
+    const totalPriceEl = document.getElementById('total-price');
+    const emptyMsg = document.getElementById('empty-cart-msg');
+    const cartTable = document.querySelector('.cart-table');
 
-  document.getElementById("total").textContent = "Tổng: " + total.toLocaleString() + "đ";
+    // Nếu không có thẻ cart-body thì dừng (đang ở trang khác)
+    if (!cartBody) return;
+
+    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+    // Nếu giỏ hàng trống
+    if (cart.length === 0) {
+        cartTable.style.display = 'none';
+        emptyMsg.style.display = 'block';
+        if(totalPriceEl) totalPriceEl.innerText = '0đ';
+        return;
+    }
+
+    // Nếu có sản phẩm
+    cartTable.style.display = 'table';
+    emptyMsg.style.display = 'none';
+    
+    let total = 0;
+    let html = '';
+
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        html += `
+            <tr>
+                <td>
+                    <div class="item-info">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/60'">
+                        <div>
+                            <strong>${item.name}</strong>
+                        </div>
+                    </div>
+                </td>
+                <td style="font-weight: 600;">${formatCurrency(item.price)}</td>
+                <td>
+                    <input type="number" value="${item.quantity}" min="1" 
+                           onchange="updateQuantity(${index}, this.value)"
+                           style="width: 50px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                </td>
+                <td>
+                    <button class="btn-remove" onclick="removeFromCart(${index})">Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    cartBody.innerHTML = html;
+    if(totalPriceEl) totalPriceEl.innerText = formatCurrency(total);
 }
 
-// Xóa sản phẩm
 function removeFromCart(index) {
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  loadCart();
+    if (confirm('Bạn có chắc muốn xóa sản phẩm này không?')) {
+        let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        cart.splice(index, 1); 
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        renderCart();
+    }
 }
 
 
-// Khi load trang giỏ
-if (document.getElementById("cart-items")) {
-  loadCart();
-  // Xử lý nút mua hàng
-  const checkoutBtn = document.getElementById("checkout-btn");
-  const checkoutForm = document.getElementById("checkout-form");
-  const confirmBtn = document.getElementById("confirm-btn");
-  if (checkoutBtn && checkoutForm && confirmBtn) {
-    checkoutBtn.onclick = function() {
-      if (cart.length === 0) {
-        alert("Giỏ hàng trống!");
+function handleCheckout(e) {
+    e.preventDefault();
+    
+    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    if (cart.length === 0) {
+        alert('Giỏ hàng đang trống!');
         return;
-      }
-      checkoutForm.style.display = "block";
-    };
-    confirmBtn.onclick = function() {
-      const name = document.getElementById("name").value.trim();
-      const address = document.getElementById("address").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      if (!name || !address || !phone) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
+    }
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const btnSubmit = document.querySelector('.btn-checkout');
+
+    if (phone.length < 10) {
+        alert("Vui lòng nhập số điện thoại hợp lệ!");
         return;
-      }
-      // Lưu đơn hàng vào localStorage
-      let orders = JSON.parse(localStorage.getItem("orders")) || [];
-      orders.push({
-        name,
-        address,
-        phone,
-        items: cart.slice(),
-        time: new Date().toLocaleString()
-      });
-      localStorage.setItem("orders", JSON.stringify(orders));
-      // Xử lý xác nhận đơn hàng
-      alert(`Cảm ơn bạn ${name} đã đặt hàng! Đơn hàng sẽ được giao tới: ${address}. SĐT: ${phone}`);
-      cart = [];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      loadCart();
-      checkoutForm.style.display = "none";
-      document.getElementById("name").value = "";
-      document.getElementById("address").value = "";
-      document.getElementById("phone").value = "";
+    }
+
+    // animations
+    btnSubmit.innerHTML = "⏳ Đang gửi đơn hàng...";
+    btnSubmit.disabled = true;
+
+    // animations end
+    let productNames = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+    let totalMoney = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    let dataToSend = {
+        date: new Date().toLocaleString('vi-VN'),
+        name: name,
+        phone: phone,
+        address: address,
+        items: productNames,
+        total: formatCurrency(totalMoney)
     };
-  }
+
+
+    // send order to our own backend (/orders)
+    fetch('/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(savedOrder => {
+        const yourZaloPhone = '84397768941'; // Số của bạn
+        let msg = `DON HANG MOI!\nKhach: ${name}\nSDT: ${phone}\nTong: ${formatCurrency(totalMoney)}\nChi tiet: ${productNames}`;
+        const zaloUrl = `https://zalo.me/${yourZaloPhone}?text=${encodeURIComponent(msg)}`;
+
+        localStorage.removeItem(CART_KEY);
+        
+        if (confirm('Đã gửi đơn hàng thành công! Bấm OK để báo qua Zalo.')) {
+            window.location.href = zaloUrl;
+        } else {
+            window.location.href = 'index.html';
+        }
+    })
+    .catch(error => {
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+        btnSubmit.innerHTML = "Xác Nhận Đặt Hàng";
+        btnSubmit.disabled = false;
+        console.error('Error:', error);
+    });
 }
+//auto render cart on page load
+document.addEventListener('DOMContentLoaded', renderCart);
