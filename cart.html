@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giỏ hàng - Shop Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+<style>
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* Máy tính: 2 phần giỏ, 1 phần thanh toán */
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* Khung chứa giỏ hàng */
+    .cart-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden; /* Giữ bo góc */
+    }
+
+    /* Bảng giỏ hàng */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá to */
+        -webkit-overflow-scrolling: touch /* Cuộn mượt */;
+    }
+
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 400px; 
+    }
+
+    .cart-table th {
+      text-align: left;
+      padding: 15px 10px;
+      color: #666;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #eee;
+      white-space: nowrap; 
+    }
+
+    .cart-table td {
+      padding: 15px 10px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    /* Ảnh sản phẩm & Tên */
+    .item-info { display: flex; align-items: center; gap: 12px; }
+    .item-info img { 
+        width: 50px; height: 50px;    /* Kích thước ảnh */
+        object-fit: cover; /* Giữ tỉ lệ ảnh */
+        border-radius: 8px; /* Bo góc ảnh */
+        border: 1px solid #eee; /* Viền ảnh */
+        flex-shrink: 0; /* Không bị méo ảnh */
+    }
+    
+  
+    .btn-remove {
+      color: #ff4d4d;
+      background: #fff0f0;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+
+    .checkout-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 20px; 
+    }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; }
+    
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px; 
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px; 
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      padding: 16px;
+      background: #0dec84;
+      color: white; border: none;
+      border-radius: 30px;
+      font-size: 1.1rem; font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(13, 236, 132, 0.4); 
+    }
+
+    .total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 1.2rem; font-weight: 600; margin: 20px 0;
+    }
+    /* Tối ưu cho điện thoại không lỗi font khi vào web */
+    @media (max-width: 768px) {
+      .cart-layout { 
+          grid-template-columns: 1fr;
+          gap: 20px;
+      }
+      
+      .cart-container, .checkout-box {
+          padding: 15px; 
+      }
+
+      /* Ẩn bớt title table  */
+      .cart-table th { font-size: 0.8rem; }
+      
+      /* Giảm kích thước ô số lượng */
+      input[type="number"] {
+          padding: 8px;
+          width: 60px !important;
+          text-align: center;
+      }
+    }
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">Shop Online</a>
+      <div>
+        <a href="index.html">Trang chủ</a>
+        <a href="catalog.html">Sản phẩm</a>
+        <a href="cart.html" class="active">Giỏ hàng</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="margin-bottom: 20px;">Giỏ hàng của bạn</h2>
+
+    <div class="cart-layout">
+      <section class="cart-container">
+        <div class="table-wrapper"> 
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th style="width: 50%;">Sản phẩm</th>
+              <th style="width: 20%;">Đơn giá</th>
+              <th style="width: 20%;">Số lượng</th>
+              <th style="width: 10%;">Xóa</th>
+            </tr>
+          </thead>
+          <tbody id="cart-body">
+           
+          </tbody>
+        </table>
+        <div id="empty-cart-msg" style="display:none; text-align:center; padding: 40px;">
+            <p>Giỏ hàng đang trống 😢</p>
+            <a href="catalog.html" style="color: var(--primary-color); font-weight:bold;">Quay lại mua sắm</a>
+        </div>
+      </section>
+
+      <section class="checkout-box">
+        <h3>Thông tin nhận hàng</h3>
+        <form id="checkout-form" onsubmit="return handleCheckout(event)">
+          <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" id="name" required placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" id="phone" required placeholder="09xxx...">
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ giao hàng</label>
+            <textarea id="address" rows="3" required placeholder="Số nhà, đường, phường..."></textarea>
+          </div>
+
+          <div class="total-row">
+            <span>Tổng cộng:</span>
+            <span id="total-price">100,000đ</span>
+          </div>
+
+          <button type="submit" class="btn-checkout">Xác Nhận Đặt Hàng</button>
+          <a href="catalog.html" style="display:block; text-align:center; margin-top:15px; color:#666; text-decoration:none; font-size:0.9rem;">Tiếp tục mua sắm</a>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Nguyễn Hữu Thiện</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+ 
+</body>
+
+</html>

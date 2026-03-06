@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh mục sản phẩm - Shop Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">Shop Online</a>
+      <div>
+        <a href="index.html">Trang chủ</a>
+        <a href="catalog.html" class="active">Sản phẩm</a>
+        <a href="cart.html">Giỏ hàng</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="text-align:center; margin-bottom:20px;">Danh Mục Sản Phẩm</h2>
+   
+    <div class="category-tabs">
+      <a class="btn-cat" onclick="filterCategory('all', this)">Tất cả</a>
+      <a class="btn-cat" onclick="filterCategory('do-dien', this)">💡 Đồ Điện</a>
+      <a class="btn-cat" onclick="filterCategory('pin', this)">🔋 Pin</a>
+      <a class="btn-cat" onclick="filterCategory('mach-dien', this)">⚡ Mạch điện</a>
+
+    </div>
+     </div>
+
+
+    <div id="product-list" class="products-container">
+        <div class="product category-do-dien">
+            <img src="img/sp1.jpg" onclick="openModal(this)" data-details="Bảng mạch được làm từ sợi thủy tinh và đồng, cấu trúc đa lớp" alt="Pin dự phòng">
+            <h3>Pin dự phòng 10000mAh</h3>
+            <p>260,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 260000, 'img/sp1.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 260000, 'img/sp1.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-do-dien">
+            <img src="img/sp2.jpg" onclick="openModal(this)" alt="Pin dự phòng">
+            <h3>Pin dự phòng 20000mAh</h3>
+            <p>50,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 50000, 'img/sp2.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 50000, 'img/sp2.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        
+
+        <div class="product category-pin">
+            <img src="img/sp5.jpg" onclick="openModal(this)" data-details="Vỏ kim loại, pin lithium-ion 10000mAh, mạch bảo vệ tích hợp" alt="Pin dự phòng">
+            <h3>Pin dự phòng 10000mAh</h3>
+            <p>450,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin dự phòng', 400000, 'img/sp5.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin dự phòng', 400000, 'img/sp5.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+            
+        </div>
+<div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+            
+        </div>
+        <div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+        </div>
+<div class="product category-pin">
+            <img src="img/sp6.jpg" onclick="openModal(this)" data-details="Lõi kẽm – than, cấu trúc điện cực đơn giản" alt="Pin AA">
+            <h3>Vỉ Pin AA (4 viên)</h3>
+            <p>20,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Pin AA', 20000, 'img/sp6.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Pin AA', 20000, 'img/sp6.jpg')">Mua ngay</button>
+            </div>
+            
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        <div class="product category-mach-dien">
+            <img src="img/sp4.jpg" onclick="openModal(this)" data-details="Bo mạch UNO R3, chứa vi điều khiển ATmega328 và các linh kiện hỗ trợ" alt="Arduino">
+            <h3>Mạch Arduino Uno R3</h3>
+            <p>150,000đ</p>
+            <div class="btn-group">
+                <button class="btn-cart" onclick="addToCart('Mạch Arduino', 150000, 'img/sp4.jpg')">Thêm</button>
+                <button class="btn-buy" onclick="buyNow('Mạch Arduino', 150000, 'img/sp4.jpg')">Mua ngay</button>
+            </div>
+        </div>
+        
+        </div>
+  </main>
+
+  <footer><p>&copy; Nguyễn Hữu Thiện</p></footer>
+  
+  <div id="img-modal" class="modal" onclick="this.style.display='none'">
+    <div class="modal-content">
+      <img id="img-modal-content" src="">
+      <div id="modal-info">
+        <h3 id="modal-name"></h3>
+        <p id="modal-price"></p>
+        <p id="modal-details"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+
+    function filterCategory(category, btnElement) {
+
+        document.querySelectorAll('.btn-cat').forEach(el => el.classList.remove('active'));
+        if(btnElement) btnElement.classList.add('active');
+
+
+        const products = document.querySelectorAll('.product');
+        products.forEach(prod => {
+            if (category === 'all') {
+                prod.classList.add('show');
+            } else {
+                if (prod.classList.contains('category-' + category)) {
+                    prod.classList.add('show');
+                } else {
+                    prod.classList.remove('show');
+                }
+            }
+        });
+    }
+
+    function openModal(imgElem) {
+        const src = imgElem.src;
+        const nameElem = imgElem.nextElementSibling;
+        const priceElem = nameElem ? nameElem.nextElementSibling : null;
+        const name = nameElem ? nameElem.innerText : '';
+        const price = priceElem ? priceElem.innerText : '';
+        const details = imgElem.dataset.details || '';
+        document.getElementById('img-modal-content').src = src;
+        document.getElementById('modal-name').innerText = name ? 'Tên sản phẩm: ' + name : '';
+        document.getElementById('modal-price').innerText = price ? 'Giá: ' + price : '';
+        document.getElementById('modal-details').innerText = details;
+        document.getElementById('img-modal').style.display = 'flex';
+    }
+
+    function buyNow(name, price, img) {
+        addToCart(name, price, img);
+        window.location.href = 'cart.html';
+    }
+  </script>
+</body>
+</html>
